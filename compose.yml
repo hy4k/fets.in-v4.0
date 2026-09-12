@@ -1,0 +1,18 @@
+services:
+  app:
+    build: .
+    image: fets-in-app
+    restart: unless-stopped
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+      - traefik.http.routers.fets-in.rule=Host(`fets.in`)
+      - traefik.http.routers.fets-in.entrypoints=websecure
+      - traefik.http.routers.fets-in.tls=true
+      - traefik.http.routers.fets-in.tls.certresolver=letsencrypt
+      - traefik.http.services.fets-in.loadbalancer.server.port=80
+networks:
+  proxy:
+    external: true
