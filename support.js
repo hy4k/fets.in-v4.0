@@ -158,11 +158,44 @@
       html += '<p class="fd-src">From published policy · checked ' + esc(kb.checked) + "</p>";
       var more = topicButtons(exam, topic.id);
       if (more) html += '<div class="fd-more"><p class="fd-src">More on ' + esc(exam.name) + '</p><div class="fd-topics">' + more + "</div></div>";
-      addMsg("desk", html);
+      var answer = addMsg("desk", html);
       scrollTo(q);
+      if (topic.calendar) liveCalendar(answer, exam);
       history.push({ role: "user", content: topic.q });
       history.push({ role: "assistant", content: topic.a });
     });
+  }
+
+  /* ---------- live centre calendar (guided answers flagged "calendar": true) ---------- */
+  // Shows the days FETS has this exam on its own calendar. Renders nothing unless
+  // the calendar is connected AND has matching days, so it can never mislead.
+  function calendarHtml(d, exam) {
+    if (!d || d.state !== "ok" || !d.centres || !d.centres.length) return "";
+    var h = '<p class="fd-cal-h"><span class="fd-dot dot-pulse"></span>On the FETS calendar now</p>';
+    for (var i = 0; i < d.centres.length; i++) {
+      var c = d.centres[i], cap = 18;
+      var labels = c.dates.slice(0, cap).map(function (x) { return esc(x.label); }).join(" · ");
+      if (c.dates.length > cap) labels += " · and " + (c.dates.length - cap) + " more days";
+      h += '<p class="fd-cal-c"><strong>' + esc(c.centre) + "</strong>" + labels + "</p>";
+    }
+    h += '<p class="fd-cal-n">' + esc(exam.name) + " session days on the centre calendar, next " + esc(d.days) +
+      " days. Not seat availability — a listed day may be full and other days may still open. Check seats on the official site above.</p>";
+    return h;
+  }
+  function liveCalendar(el, exam) {
+    fetch(ASK_URL + "/calendar?exam=" + encodeURIComponent(exam.id))
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (d) {
+        var h = calendarHtml(d, exam);
+        if (!h) return;
+        var box = document.createElement("div");
+        box.className = "fd-cal";
+        box.innerHTML = h;
+        var body = el.querySelector(".fd-body");
+        var src = body.querySelector(".fd-src");
+        body.insertBefore(box, src || null);
+      })
+      .catch(function () {});
   }
 
   function ask(text) {

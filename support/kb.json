@@ -1,7 +1,7 @@
 {
   "version": "2026-11-11",
   "checked": "11 Nov 2026",
-  "note": "Single source of truth for the FETS candidate support desk. The landing page renders these answers directly; the Ask FETS assistant (fets-agent) loads this same file as verified knowledge. Edit an answer here and both update. Answers use a small markdown subset: blank line = new paragraph, '- ' bullets, **bold**.",
+  "note": "Single source of truth for the FETS candidate support desk. The landing page renders these answers directly; the Ask FETS assistant (fets-agent) loads this same file as verified knowledge. Edit an answer here and both update. Answers use a small markdown subset: blank line = new paragraph, '- ' bullets, **bold**. A topic with \"calendar\": true also shows that exam's upcoming session days from the centre calendar, when connected.",
   "contact": {
     "email": "edu@fets.in",
     "whatsapp": "+91 96056 86000",
@@ -22,6 +22,7 @@
         {
           "id": "window",
           "label": "Is the window open? Check dates",
+          "calendar": true,
           "q": "Is the CMA US testing window open, and are dates available?",
           "a": "CMA US runs in three testing windows each year: **January–February**, **May–June** and **September–October**.\n\nSeats at FETS Calicut and FETS Kochi are published and booked only on **Prometric ProScheduler**. FETS cannot open, hold or reserve a seat, and we do not see dates before Prometric releases them — the scheduler is always the live answer.\n\n- Open ProScheduler and search for the CMA exam (sponsor: Institute of Certified Management Accountants).\n- Search by city — Kozhikode (Calicut) or Kochi — to see every open date at our centres.\n- To book you need the **authorization number** IMA issues once you have registered and paid for an exam part.\n\nIf no dates show for the window you want, IMA or Prometric has not opened it yet. Check again in a few days.",
           "links": [
@@ -95,6 +96,7 @@
         {
           "id": "dates",
           "label": "Test dates and booking",
+          "calendar": true,
           "q": "How do I see CELPIP dates and book a seat?",
           "a": "CELPIP dates are published and booked only on the official CELPIP site — the centre cannot book a seat for you.\n\n- Open the CELPIP India page and filter by region **Kerala**, then city **Kozhikode** or **Kochi**.\n- Choose the test type: **CELPIP-General** or **CELPIP-General LS**.\n- Register and pay in your CELPIP Account.\n\nYou may hold more than one registration only if the test sessions are at least 30 calendar days apart.",
           "links": [
@@ -150,6 +152,7 @@
         {
           "id": "booking",
           "label": "How to book at FETS",
+          "calendar": true,
           "q": "How do I book an AWS Certification exam at FETS?",
           "a": "AWS exams are scheduled through your **AWS Certification account**, which hands you to Pearson VUE.\n\n- Sign in to your AWS Certification account and choose to schedule with Pearson VUE.\n- Pick delivery **at a test centre**, then search Kozhikode (Calicut) or Kochi.\n- Select the FETS — Forun Testing & Educational Services centre and choose a date and time.\n\nAvailable dates are shown live by Pearson VUE; the centre cannot book on your behalf.",
           "links": [
@@ -196,6 +199,7 @@
         {
           "id": "booking",
           "label": "How to book at FETS",
+          "calendar": true,
           "q": "How do I book a Microsoft certification exam at FETS?",
           "a": "Microsoft exams are scheduled from the exam's page on **Microsoft Learn**, which hands you to Pearson VUE.\n\n- On Microsoft Learn, open your exam and choose **Schedule exam**.\n- Choose delivery **at a test centre**, then search Kozhikode (Calicut) or Kochi.\n- Select the FETS — Forun Testing & Educational Services centre and pick a date.\n\nThe fee for your exam and country is shown at checkout.",
           "links": [
@@ -242,6 +246,7 @@
         {
           "id": "booking",
           "label": "How to book at FETS",
+          "calendar": true,
           "q": "How do I book an Anthropic exam at FETS?",
           "a": "- Register in the **Anthropic Partner Academy** first.\n- Then sign in to the Pearson VUE portal to schedule. First-time candidates are emailed a Pearson username and password.\n- Choose a **test centre** appointment, search Kozhikode (Calicut) or Kochi, and select FETS.\n\nThe exam fee is shown when you register. To switch between online and test-centre delivery, cancel and book again.",
           "links": [
@@ -289,6 +294,7 @@
         {
           "id": "booking",
           "label": "How to apply and book",
+          "calendar": true,
           "q": "How do I apply for MRCS Part A and book a seat?",
           "a": "MRCS Part A is a two-step process:\n\n- **Apply to a Royal College first.** You must apply through one of the four Surgical Royal Colleges and be accepted for the sitting. The fee is set and paid there.\n- **Then book your seat.** Pearson VUE emails you booking instructions. You choose your test centre — search Kozhikode (Calicut) or Kochi for FETS — during the **booking window** for that sitting.\n\nSeats can only be booked, changed or cancelled inside that booking window. If you cannot find a seat, contact Pearson VUE customer service first, then your College by email before the window closes.",
           "links": [
