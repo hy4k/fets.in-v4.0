@@ -173,18 +173,26 @@
     if (!d || d.state !== "ok" || !d.centres || !d.centres.length) return "";
     var h = '<p class="fd-cal-h"><span class="fd-dot dot-pulse"></span>On the FETS calendar now</p>';
     for (var i = 0; i < d.centres.length; i++) {
-      var c = d.centres[i], cap = 18;
-      var labels = c.dates.slice(0, cap).map(function (x) { return esc(x.label); }).join(" · ");
-      if (c.dates.length > cap) labels += " · and " + (c.dates.length - cap) + " more days";
-      h += '<p class="fd-cal-c"><strong>' + esc(c.centre) + "</strong>" + labels + "</p>";
+      var c = d.centres[i];
+      h += '<div class="fd-cal-c"><strong>' + esc(c.centre) + "</strong>";
+      if (c.months && c.months.length) {
+        for (var m = 0; m < c.months.length; m++) {
+          h += '<p class="fd-cal-m"><span>' + esc(c.months[m].label) + "</span>" + esc(c.months[m].days) + "</p>";
+        }
+      } else {
+        h += '<p class="fd-cal-m">' + c.dates.slice(0, 18).map(function (x) { return esc(x.label); }).join(" · ") + "</p>";
+      }
+      h += "</div>";
     }
     h += '<p class="fd-cal-n">' + esc(exam.name) + " session days on the centre calendar, next " + esc(d.days) +
-      " days. Not seat availability — a listed day may be full and other days may still open. Check seats on the official site above.</p>";
+      " days (ranges inclusive). Not seat availability — a listed day may be full and other days may still open. Check seats on the official site above.</p>";
     return h;
   }
+  var calCache = {};   // one request per exam per visit: the endpoint shares the assistant's rate limit
   function liveCalendar(el, exam) {
-    fetch(ASK_URL + "/calendar?exam=" + encodeURIComponent(exam.id))
-      .then(function (r) { return r.ok ? r.json() : null; })
+    var req = calCache[exam.id] || (calCache[exam.id] = fetch(ASK_URL + "/calendar?exam=" + encodeURIComponent(exam.id))
+      .then(function (r) { return r.ok ? r.json() : null; }));
+    req
       .then(function (d) {
         var h = calendarHtml(d, exam);
         if (!h) return;
