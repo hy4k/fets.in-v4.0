@@ -3,8 +3,8 @@
 Static marketing site for FETS — Forun Testing & Educational Services
 (authorized Prometric, Pearson VUE and PSI testing centre, Calicut & Kochi, Kerala).
 
-Candidate support comes first: the landing screen is the **support desk** (pick an exam or type a
-question); the original site — facility, catalogue, centres, FAQ, contact — follows below it and is
+Candidate support comes first: the landing screen is the **Ask FETS console** and nothing else
+(pick an exam, tap a common question, or type one); the original site — facility, catalogue, centres, FAQ, contact — follows below it and is
 reachable from the top bar and the Index.
 
 The site itself is static (compiled React + Vite export plus hand-written support files): no build

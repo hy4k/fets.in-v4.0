@@ -47,6 +47,7 @@
   function inline(s) {
     return s
       .replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>")
+      .replace(/(^|[\s(])\*([^*\n]+)\*(?=[\s).,;:!?]|$)/g, "$1<em>$2</em>")
       .replace(/\[([^\]]+)\]\(((?:https?:\/\/|mailto:)[^)\s]+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
       .replace(/(^|[\s(])((?:https?:\/\/)[^\s<)]+)/g, function (m, pre, url) {
         var tail = (url.match(/[.,;:!?]+$/) || [""])[0];
@@ -115,6 +116,8 @@
       var on = btns[i].getAttribute("data-exam") === id;
       btns[i].classList.toggle("is-on", on);
       btns[i].setAttribute("aria-pressed", on ? "true" : "false");
+      // On phones the exam strip scrolls sideways: keep the chosen exam in view.
+      if (on) { var s = btns[i].parentNode; s.scrollLeft = Math.max(0, btns[i].offsetLeft - (s.clientWidth - btns[i].offsetWidth) / 2); }
     }
   }
 
