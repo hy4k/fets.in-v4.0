@@ -7,20 +7,144 @@
     <meta name="theme-color" content="#0a0b0d" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="description" content="FETS — Forun Testing & Educational Services. Authorized Prometric, Pearson VUE and PSI testing centre. Two secure exam facilities in Calicut and Kochi, Kerala." />
-    <title>FETS — Forun Testing & Educational Services</title>
+    <meta name="description" content="FETS candidate support desk — exam dates, fees, rescheduling and ID rules for CMA US, CELPIP, AWS, Microsoft, Anthropic, MRCS and more. Authorized Prometric, Pearson VUE and PSI testing centre in Calicut and Kochi, Kerala." />
+    <title>FETS — Candidate Support · Forun Testing & Educational Services</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap"
       rel="stylesheet"
     />
-    <script type="module" crossorigin src="./assets/index-B2ZHycK3.js"></script>
+    <script type="module" crossorigin src="./assets/index-B2ZHycK3-desk.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CnSBM5YV.css">
     <link rel="stylesheet" crossorigin href="./enhancements.css">
+    <link rel="stylesheet" href="./support.css">
   </head>
   <body>
+    <!-- ============================================================
+         FETS candidate support desk — the first thing a candidate sees.
+         Static markup so it paints before the app bundle; behaviour in
+         support.js, answers in support/kb.json. The existing site
+         (facility, catalogue, centres, FAQ, contact) follows below it
+         and is reachable from the bar and the index.
+         ============================================================ -->
+    <header class="fd-bar" id="fd-bar">
+      <a class="fd-brand" href="#desk" data-desk-top>
+        <span class="fd-logo"><img src="/images/brand/forun.png" alt="Forun" /></span>
+        <span class="fd-brand-t">FETS<i>Candidate support</i></span>
+      </a>
+      <nav class="fd-nav" aria-label="Site sections">
+        <a href="#registry">Exams</a>
+        <a href="#sites">Centres</a>
+        <a href="#simulation">Test drive</a>
+        <a href="#briefing">FAQ</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="fd-bar-r">
+        <button type="button" class="fd-bar-ask" data-desk-focus>Ask the desk</button>
+        <button type="button" class="fd-bar-menu" id="fd-menu-btn" aria-expanded="false" aria-controls="fd-index">Index</button>
+      </div>
+    </header>
+
+    <div class="fd-index" id="fd-index" hidden>
+      <div class="fd-index-in">
+        <p class="fd-micro fd-sig fd-rule">Index — everything on this site</p>
+        <ol class="fd-index-list">
+          <li><a href="#desk" data-desk-top><span>—</span><b>Support desk</b><i>Ask about your exam</i></a></li>
+          <li><a href="#airlock"><span>00</span><b>The facility</b><i>Two centres, one standard</i></a></li>
+          <li><a href="#protocol"><span>01</span><b>Exam-day journey</b><i>Check-in, step by step</i></a></li>
+          <li><a href="#floor"><span>02</span><b>Inside the facility</b><i>Reception, lockers, testing floor</i></a></li>
+          <li><a href="#registry"><span>03</span><b>Exam catalogue</b><i>Programmes we deliver</i></a></li>
+          <li><a href="#simulation"><span>04</span><b>Exam Test Drive</b><i>Mock exams in the real room</i></a></li>
+          <li><a href="#clearance"><span>05</span><b>Authorizations</b><i>Prometric · Pearson VUE · PSI</i></a></li>
+          <li><a href="#sites"><span>06</span><b>Two centres</b><i>Calicut and Kochi — maps and directions</i></a></li>
+          <li><a href="#briefing"><span>07</span><b>Candidate FAQ</b><i>Know before you go</i></a></li>
+          <li><a href="#contact"><span>08</span><b>Contact</b><i>Email and phone</i></a></li>
+        </ol>
+      </div>
+    </div>
+
+    <section class="fd" id="desk" aria-labelledby="fd-title">
+      <div class="fd-grid grid-bg" aria-hidden="true"></div>
+      <div class="fd-glow" aria-hidden="true"></div>
+
+      <div class="fd-in">
+        <div class="fd-status">
+          <p class="fd-micro fd-sig fd-rule">Candidate support desk<span class="fd-wide">&nbsp;— Calicut · Kochi</span></p>
+          <p class="fd-micro fd-status-r"><span class="fd-dot dot-pulse"></span>Desk online<span class="fd-clock fd-wide" id="fd-clock"></span></p>
+        </div>
+
+        <div class="fd-cols">
+          <div class="fd-lead">
+            <h1 class="display fd-title" id="fd-title">YOUR EXAM,<br /><span>ANSWERED</span><span>.</span></h1>
+            <p class="fd-sub">Dates, fees, rescheduling, ID rules — ask before you travel.<span class="fd-wide"> Answers follow each exam body's published policy, for candidates sitting at FETS Calicut and Kochi.</span></p>
+
+            <p class="fd-micro fd-pick">Select your exam</p>
+            <div class="fd-exams" id="fd-exams">
+              <button type="button" class="fd-exam" data-exam="cma-us"><span class="fd-exam-n">01</span><span class="fd-exam-t">CMA US</span><span class="fd-exam-b">IMA · Prometric</span><span class="fd-exam-a" aria-hidden="true">→</span></button>
+              <button type="button" class="fd-exam" data-exam="celpip"><span class="fd-exam-n">02</span><span class="fd-exam-t">CELPIP</span><span class="fd-exam-b">Paragon</span><span class="fd-exam-a" aria-hidden="true">→</span></button>
+              <button type="button" class="fd-exam" data-exam="aws"><span class="fd-exam-n">03</span><span class="fd-exam-t">AWS</span><span class="fd-exam-b">Pearson VUE</span><span class="fd-exam-a" aria-hidden="true">→</span></button>
+              <button type="button" class="fd-exam" data-exam="microsoft"><span class="fd-exam-n">04</span><span class="fd-exam-t">Microsoft</span><span class="fd-exam-b">Pearson VUE</span><span class="fd-exam-a" aria-hidden="true">→</span></button>
+              <button type="button" class="fd-exam" data-exam="anthropic"><span class="fd-exam-n">05</span><span class="fd-exam-t">Anthropic</span><span class="fd-exam-b">Pearson VUE</span><span class="fd-exam-a" aria-hidden="true">→</span></button>
+              <button type="button" class="fd-exam" data-exam="mrcs"><span class="fd-exam-n">06</span><span class="fd-exam-t">MRCS Part A</span><span class="fd-exam-b">Pearson VUE</span><span class="fd-exam-a" aria-hidden="true">→</span></button>
+              <button type="button" class="fd-exam" data-exam="other"><span class="fd-exam-n">07</span><span class="fd-exam-t">Another exam</span><span class="fd-exam-b">Prometric · Pearson VUE · PSI</span><span class="fd-exam-a" aria-hidden="true">→</span></button>
+            </div>
+          </div>
+
+          <div class="fd-console brackets" id="fd-console" role="region" aria-label="Ask the FETS support desk">
+            <div class="fd-console-h">
+              <span class="fd-sig">Desk 01 — Ask FETS</span>
+              <span class="fd-console-live"><span class="fd-dot dot-pulse"></span>Live</span>
+            </div>
+            <div class="fd-log" id="fd-log" role="log" aria-live="polite" aria-relevant="additions" tabindex="0">
+              <div class="fd-msg is-desk">
+                <span class="fd-who">Desk</span>
+                <div class="fd-body">
+                  <p>Pick your exam, or type a question below. Common ones:</p>
+                  <div class="fd-topics">
+                    <button type="button" class="fd-topic" data-exam="cma-us" data-topic="window">Is the CMA US window open?</button>
+                    <button type="button" class="fd-topic" data-exam="celpip" data-topic="where">CELPIP in Kerala — where?</button>
+                    <button type="button" class="fd-topic" data-exam="cma-us" data-topic="reschedule">Change my CMA US date</button>
+                    <button type="button" class="fd-topic" data-exam="celpip" data-topic="id">What ID does CELPIP need?</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <form class="fd-form" id="fd-form" autocomplete="off">
+              <span class="fd-prompt" aria-hidden="true">›</span>
+              <textarea id="fd-q" class="fd-q" rows="1" maxlength="600" placeholder="Ask about dates, fees, rescheduling, ID…" aria-label="Your question for the support desk"></textarea>
+              <button type="submit" class="fd-send" id="fd-send">Send <span aria-hidden="true">→</span></button>
+            </form>
+            <p class="fd-legal">Automated desk. Your exam body's own rule always decides. Never share passwords or card details here.</p>
+          </div>
+        </div>
+
+        <div class="fd-lines" aria-label="Reach a person">
+          <a class="fd-line" href="https://wa.me/919605686000" target="_blank" rel="noopener">
+            <span class="fd-line-k">WhatsApp</span><span class="fd-line-v">+91 96056 86000</span><span class="fd-line-n">Talk to a person →</span>
+          </a>
+          <a class="fd-line" href="tel:04954915936">
+            <span class="fd-line-k">Call — Calicut</span><span class="fd-line-v">0495 491 5936</span><span class="fd-line-n">Mon–Sun · 08:00–18:00 →</span>
+          </a>
+          <a class="fd-line" href="tel:04844541957">
+            <span class="fd-line-k">Call — Kochi</span><span class="fd-line-v">0484 454 1957</span><span class="fd-line-n">Mon–Sun · 08:00–18:00 →</span>
+          </a>
+          <a class="fd-line" href="mailto:edu@fets.in">
+            <span class="fd-line-k">Write</span><span class="fd-line-v">edu@fets.in</span><span class="fd-line-n">Replies within one working day →</span>
+          </a>
+        </div>
+
+        <a class="fd-down" href="#airlock">
+          <span>The facility, exam catalogue and both centres</span>
+          <span class="fd-down-l" aria-hidden="true"><i></i></span>
+        </a>
+      </div>
+    </section>
+
+    <button type="button" class="fd-launch" id="fd-launch" data-desk-focus hidden>Ask the desk <span aria-hidden="true">↑</span></button>
+
     <div id="root"></div>
     <script src="./enhancements.js" defer></script>
+    <script src="./support.js" defer></script>
   </body>
 </html>

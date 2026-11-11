@@ -1,0 +1,367 @@
+{
+  "version": "2026-11-11",
+  "checked": "11 Nov 2026",
+  "note": "Single source of truth for the FETS candidate support desk. The landing page renders these answers directly; the Ask FETS assistant (fets-agent) loads this same file as verified knowledge. Edit an answer here and both update. Answers use a small markdown subset: blank line = new paragraph, '- ' bullets, **bold**.",
+  "contact": {
+    "email": "edu@fets.in",
+    "whatsapp": "+91 96056 86000",
+    "whatsappLink": "https://wa.me/919605686000",
+    "calicut": "0495 491 5936",
+    "kochi": "0484 454 1957",
+    "hours": "Mon–Sun · 08:00–18:00"
+  },
+  "exams": [
+    {
+      "id": "cma-us",
+      "code": "CMA",
+      "name": "CMA US",
+      "body": "IMA · delivered by Prometric",
+      "sites": "CLT + KCH",
+      "aliases": ["cma", "cma us", "cma usa", "us cma", "ima", "icma"],
+      "topics": [
+        {
+          "id": "window",
+          "label": "Is the window open? Check dates",
+          "q": "Is the CMA US testing window open, and are dates available?",
+          "a": "CMA US runs in three testing windows each year: **January–February**, **May–June** and **September–October**.\n\nSeats at FETS Calicut and FETS Kochi are published and booked only on **Prometric ProScheduler**. FETS cannot open, hold or reserve a seat, and we do not see dates before Prometric releases them — the scheduler is always the live answer.\n\n- Open ProScheduler and search for the CMA exam (sponsor: Institute of Certified Management Accountants).\n- Search by city — Kozhikode (Calicut) or Kochi — to see every open date at our centres.\n- To book you need the **authorization number** IMA issues once you have registered and paid for an exam part.\n\nIf no dates show for the window you want, IMA or Prometric has not opened it yet. Check again in a few days.",
+          "links": [
+            { "label": "Open Prometric ProScheduler", "url": "https://proscheduler.prometric.com/" },
+            { "label": "IMA — CMA certification", "url": "https://www.imaglobal.org/certifications/cma" }
+          ]
+        },
+        {
+          "id": "fees",
+          "label": "Exam fees",
+          "q": "What are the CMA US exam fees?",
+          "a": "CMA fees are set by IMA and paid to IMA online when you register — they are not set by the test centre.\n\nIMA's published fees (checked 11 Nov 2026):\n\n- **CMA entrance fee:** US$300 for professional members, US$225 for student/academic members. One-time and non-refundable.\n- **Exam fee, per part:** US$545 for professional members, US$407 for student/academic members.\n- IMA membership is required and billed separately.\n\nIMA revises fees from time to time, so confirm the amount on IMA's site before you pay.",
+          "links": [
+            { "label": "IMA — CMA fees and enrolment", "url": "https://www.imaglobal.org/pages/cma-enroll" }
+          ]
+        },
+        {
+          "id": "reschedule",
+          "label": "Change or cancel my date",
+          "q": "How do I change or cancel my CMA US exam date?",
+          "a": "You change the date yourself on **Prometric ProScheduler** (Reschedule/Cancel), using the confirmation number from your appointment email. The centre cannot move an appointment for you.\n\n**Within the same testing window — Prometric's rule:**\n\n- **46 days or more** before the appointment: no fee.\n- **5 to 45 days** before: US$70 fee, paid to Prometric.\n- **Fewer than 5 days** before, or not showing up: the appointment cannot be changed and the exam fee is forfeited.\n\n**To a different testing window:** this is done with IMA, not Prometric. IMA's Exam Switch Form carries a US$150 fee and is allowed once per exam part.\n\nCancelling the Prometric appointment alone does not refund your exam fee.",
+          "links": [
+            { "label": "Reschedule on ProScheduler", "url": "https://proscheduler.prometric.com/" },
+            { "label": "IMA — CMA certification", "url": "https://www.imaglobal.org/certifications/cma" }
+          ]
+        },
+        {
+          "id": "id",
+          "label": "ID requirements",
+          "q": "What ID do I need for the CMA US exam?",
+          "a": "IMA's rule for the CMA exam is one of the following:\n\n- An **original, valid, signed, unexpired passport**, or\n- **Two original, unexpired IDs** — one carrying your photograph, and both carrying your signature. IMA lists PAN card, Aadhaar and Voter ID as secondary IDs, so two are needed. Aadhaar carries no signature, so pair it with a signed ID.\n\nAlso required:\n\n- The name on your ID must match the name on your IMA authorization letter **exactly**.\n- Originals only. Photocopies and electronic versions are not accepted.\n\nIf you are refused entry over ID, IMA requires a fresh registration at full fee — so if you hold a passport, bring it.",
+          "links": [
+            { "label": "IMA — the CMA handbook", "url": "https://www.imaglobal.org/courses/the-cma-handbook" }
+          ]
+        },
+        {
+          "id": "exam-day",
+          "label": "Exam day at FETS",
+          "q": "What happens on CMA US exam day at FETS?",
+          "a": "- **Report 30 minutes early.** That covers check-in, ID verification and biometric capture without rush.\n- **ID and fingerprint.** You sign the Prometric log book and give a fingerprint; your ID is matched to your registration.\n- **Everything goes in a locker.** Phones, watches, bags, notes and electronics are sealed in a numbered locker before you enter the testing floor.\n- **Your own station.** One candidate per partitioned bay, on an invigilated, recorded floor.\n\nBring your appointment confirmation email and the ID described under ID requirements.",
+          "links": []
+        },
+        {
+          "id": "results",
+          "label": "Results",
+          "q": "When do I get my CMA US results?",
+          "a": "Results are issued by IMA, not by the test centre. IMA emails them and posts them to your IMA profile roughly **six weeks after the end of the month in which you sat the exam**.\n\nThe centre does not receive or hold your score.",
+          "links": [
+            { "label": "IMA — CMA certification", "url": "https://www.imaglobal.org/certifications/cma" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "celpip",
+      "code": "CELPIP",
+      "name": "CELPIP",
+      "body": "Paragon Testing Enterprises",
+      "sites": "CLT + KCH",
+      "aliases": ["celpip", "celpip general", "celpip ls", "paragon", "canada english test"],
+      "topics": [
+        {
+          "id": "where",
+          "label": "Where can I sit it in Kerala?",
+          "q": "Where can I take CELPIP in Kerala?",
+          "a": "FETS is the CELPIP test centre in **Calicut (Kozhikode)** and in **Kochi**.\n\n- **Calicut:** 4th Floor, Kadooli Tower, West Nadakkavu, Vandipetta Junction, Calicut 673011.\n- **Kochi:** 6th Floor, Manjooran Estate, Behind MRA Hotel, Bypass Junction, Edappally, Kochi 682024 — 350 m from Edappally Metro.\n\nWhen you book on the CELPIP site, choose region Kerala and city Kozhikode or Kochi.",
+          "links": [
+            { "label": "CELPIP India — find a test date", "url": "https://www.celpip.ca/country/india/" }
+          ]
+        },
+        {
+          "id": "dates",
+          "label": "Test dates and booking",
+          "q": "How do I see CELPIP dates and book a seat?",
+          "a": "CELPIP dates are published and booked only on the official CELPIP site — the centre cannot book a seat for you.\n\n- Open the CELPIP India page and filter by region **Kerala**, then city **Kozhikode** or **Kochi**.\n- Choose the test type: **CELPIP-General** or **CELPIP-General LS**.\n- Register and pay in your CELPIP Account.\n\nYou may hold more than one registration only if the test sessions are at least 30 calendar days apart.",
+          "links": [
+            { "label": "CELPIP India — find a test date", "url": "https://www.celpip.ca/country/india/" }
+          ]
+        },
+        {
+          "id": "fees",
+          "label": "Test fee",
+          "q": "What is the CELPIP test fee?",
+          "a": "The CELPIP fee is set by Paragon and shown in rupees when you pick a test date on the official CELPIP India page. You pay online in your CELPIP Account — it is not paid at the centre.\n\nWe do not quote the figure here because Paragon changes it and the amount differs between CELPIP-General and CELPIP-General LS. The booking page always shows the current fee including tax.",
+          "links": [
+            { "label": "CELPIP India — current fees and dates", "url": "https://www.celpip.ca/country/india/" }
+          ]
+        },
+        {
+          "id": "reschedule",
+          "label": "Change or cancel my date",
+          "q": "How do I change or cancel my CELPIP test date?",
+          "a": "Both are done in your **CELPIP Account**. Paragon's rule turns on a **nine calendar day** cut-off:\n\n- **Transfer to another date, 9 or more days before:** allowed, with a transfer fee of CA$50 plus applicable taxes.\n- **Cancel, 9 or more days before:** you receive a refund of 50% of the fee you paid.\n- **Cancel, fewer than 9 days before:** no refund.\n- **Transfer, fewer than 9 days before:** not available online — contact Paragon customer service, who may ask for supporting documents such as a doctor's note.\n\nThe centre cannot transfer or refund a booking.",
+          "links": [
+            { "label": "CELPIP India — change or cancel", "url": "https://www.celpip.ca/country/india/" }
+          ]
+        },
+        {
+          "id": "id",
+          "label": "ID requirements",
+          "q": "What ID do I need for CELPIP?",
+          "a": "For CELPIP in India the accepted identification is a **passport booklet** (or a Refugee Travel Document).\n\n- It must be the **same document you used to register** — full name and document number must match your registration.\n- It must be the original, valid and unexpired. Photocopies are not accepted.\n- Employee ID, student ID, or any expired or temporary document is not accepted.\n\nIf the ID does not meet these rules you are refused entry with **no refund and no transfer**. Do not send your passport away for visa work before your test date.",
+          "links": [
+            { "label": "CELPIP India — ID rules", "url": "https://www.celpip.ca/country/india/" }
+          ]
+        },
+        {
+          "id": "results",
+          "label": "Scores",
+          "q": "When do I get my CELPIP scores?",
+          "a": "Scores appear online in your CELPIP Account **3–4 business days** after your test date (weekends and holidays excluded). You get an email when they are ready, and the Official Score Report is a PDF download.\n\nScores stay viewable in your account for two years from the test date.",
+          "links": [
+            { "label": "CELPIP India", "url": "https://www.celpip.ca/country/india/" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "aws",
+      "code": "AWS",
+      "name": "AWS",
+      "body": "Amazon Web Services · delivered by Pearson VUE",
+      "sites": "CLT + KCH",
+      "aliases": ["aws", "amazon web services", "cloud practitioner", "solutions architect"],
+      "topics": [
+        {
+          "id": "booking",
+          "label": "How to book at FETS",
+          "q": "How do I book an AWS Certification exam at FETS?",
+          "a": "AWS exams are scheduled through your **AWS Certification account**, which hands you to Pearson VUE.\n\n- Sign in to your AWS Certification account and choose to schedule with Pearson VUE.\n- Pick delivery **at a test centre**, then search Kozhikode (Calicut) or Kochi.\n- Select the FETS — Forun Testing & Educational Services centre and choose a date and time.\n\nAvailable dates are shown live by Pearson VUE; the centre cannot book on your behalf.",
+          "links": [
+            { "label": "AWS Certification — schedule an exam", "url": "https://aws.amazon.com/certification/" }
+          ]
+        },
+        {
+          "id": "fees",
+          "label": "Exam fees",
+          "q": "What are the AWS exam fees?",
+          "a": "AWS's published list prices (checked 11 Nov 2026), for one attempt:\n\n- **Foundational** (e.g. Cloud Practitioner): US$100\n- **Associate:** US$150\n- **Professional and Specialty:** US$300\n\nYou pay AWS/Pearson VUE online when you schedule. Local taxes may apply.",
+          "links": [
+            { "label": "AWS — policies before testing", "url": "https://aws.amazon.com/certification/policies/before-testing/" }
+          ]
+        },
+        {
+          "id": "reschedule",
+          "label": "Change or cancel my date",
+          "q": "How do I reschedule or cancel my AWS exam?",
+          "a": "Through your AWS Certification account (it opens your Pearson VUE dashboard). AWS's rule:\n\n- You can reschedule or cancel **up to 24 hours** before your appointment.\n- Each appointment can be rescheduled **twice**. A third change means cancelling and booking afresh.\n- Inside 24 hours, or if you do not attend, the exam fee is forfeited.",
+          "links": [
+            { "label": "AWS — policies before testing", "url": "https://aws.amazon.com/certification/policies/before-testing/" }
+          ]
+        },
+        {
+          "id": "id",
+          "label": "ID requirements",
+          "q": "What ID do I need for an AWS exam?",
+          "a": "AWS requires **two forms of ID** at a test centre:\n\n- A **primary** valid government-issued photo ID, and\n- A **secondary** ID.\n\nThe first and last name on your IDs must match your AWS Certification account exactly. If your account name differs, correct it in the account before exam day — the centre cannot make exceptions.",
+          "links": [
+            { "label": "AWS — policies before testing", "url": "https://aws.amazon.com/certification/policies/before-testing/" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "microsoft",
+      "code": "MSFT",
+      "name": "Microsoft",
+      "body": "Microsoft · delivered by Pearson VUE",
+      "sites": "CLT + KCH",
+      "aliases": ["microsoft", "azure", "az-900", "az-104", "ms-900", "dp-900", "ai-900", "sc-900", "power bi"],
+      "topics": [
+        {
+          "id": "booking",
+          "label": "How to book at FETS",
+          "q": "How do I book a Microsoft certification exam at FETS?",
+          "a": "Microsoft exams are scheduled from the exam's page on **Microsoft Learn**, which hands you to Pearson VUE.\n\n- On Microsoft Learn, open your exam and choose **Schedule exam**.\n- Choose delivery **at a test centre**, then search Kozhikode (Calicut) or Kochi.\n- Select the FETS — Forun Testing & Educational Services centre and pick a date.\n\nThe fee for your exam and country is shown at checkout.",
+          "links": [
+            { "label": "Microsoft Learn — certifications", "url": "https://learn.microsoft.com/en-us/credentials/" }
+          ]
+        },
+        {
+          "id": "reschedule",
+          "label": "Change or cancel my date",
+          "q": "How do I reschedule or cancel my Microsoft exam?",
+          "a": "From your Microsoft Learn profile → Credentials → your appointment → **Reschedule** or **Cancel**.\n\nMicrosoft's rule: change or cancel **at least 24 hours** before the appointment. Inside 24 hours, or if you do not attend, the exam fee is forfeited (a company voucher is lost the same way).",
+          "links": [
+            { "label": "Microsoft — reschedule and cancellation policy", "url": "https://learn.microsoft.com/en-us/credentials/support/reschedule-and-cancellation-policy" }
+          ]
+        },
+        {
+          "id": "id",
+          "label": "ID requirements",
+          "q": "What ID do I need for a Microsoft exam?",
+          "a": "Microsoft requires **one original, valid (unexpired) government-issued ID showing your name, photo and signature**. Photocopies are not accepted.\n\n- The first and last name you registered with must match the ID **exactly**.\n- To test at a centre in India you must be a resident of India, and the centre is required to record that proof.\n- Exceptions can only be approved by Pearson VUE customer service, at least three business days before the exam — the centre cannot grant them.",
+          "links": [
+            { "label": "Microsoft — exam security and ID policy", "url": "https://learn.microsoft.com/en-us/credentials/support/exam-and-assessment-lab-security-policies" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "anthropic",
+      "code": "CLAUDE",
+      "name": "Anthropic",
+      "body": "Anthropic · delivered by Pearson VUE",
+      "sites": "CLT + KCH",
+      "aliases": ["anthropic", "claude", "claude certified", "ccao", "ccar", "ccdv"],
+      "topics": [
+        {
+          "id": "who",
+          "label": "Exams and who can sit them",
+          "q": "Which Anthropic exams are there, and who can register?",
+          "a": "Anthropic's Claude certification exams delivered by Pearson VUE are:\n\n- Claude Certified Associate — Foundations (CCAO-F)\n- Claude Certified Architect — Foundations (CCAR-F)\n- Claude Certified Architect — Professional (CCAR-P)\n- Claude Certified Developer — Foundations (CCDV-F)\n\nPearson VUE states that certification is open to **organisations in the Claude Partner Network**. If your organisation is not a partner, registration is not available to you yet.",
+          "links": [
+            { "label": "Pearson VUE — Anthropic exams", "url": "https://www.pearsonvue.com/us/en/anthropic.html" }
+          ]
+        },
+        {
+          "id": "booking",
+          "label": "How to book at FETS",
+          "q": "How do I book an Anthropic exam at FETS?",
+          "a": "- Register in the **Anthropic Partner Academy** first.\n- Then sign in to the Pearson VUE portal to schedule. First-time candidates are emailed a Pearson username and password.\n- Choose a **test centre** appointment, search Kozhikode (Calicut) or Kochi, and select FETS.\n\nThe exam fee is shown when you register. To switch between online and test-centre delivery, cancel and book again.",
+          "links": [
+            { "label": "Anthropic Partner Academy", "url": "https://anthropic-partners.skilljar.com/" },
+            { "label": "Pearson VUE — Anthropic exams", "url": "https://www.pearsonvue.com/us/en/anthropic.html" }
+          ]
+        },
+        {
+          "id": "reschedule",
+          "label": "Change or cancel my date",
+          "q": "How do I reschedule or cancel my Anthropic exam?",
+          "a": "In your Pearson VUE account. The rule for Anthropic exams is stricter than most:\n\n- Exams cannot be cancelled or rescheduled **less than 48 hours** before the appointment.\n- Missing that cut-off, or not attending, forfeits the exam fee.\n\nAfter rescheduling, check that the new date shows in your Pearson profile.",
+          "links": [
+            { "label": "Pearson VUE — Anthropic exams", "url": "https://www.pearsonvue.com/us/en/anthropic.html" }
+          ]
+        },
+        {
+          "id": "id",
+          "label": "ID and name match",
+          "q": "What ID do I need for an Anthropic exam?",
+          "a": "Bring your government-issued ID. Your **Pearson VUE profile name must match it exactly** — a mismatch at check-in means entry is refused and the fee is forfeited.\n\nIf the name needs correcting, email certifications-support@anthropic.com **at least 24 hours** before your exam. The centre cannot change it at the desk.",
+          "links": [
+            { "label": "Pearson VUE — Anthropic exams", "url": "https://www.pearsonvue.com/us/en/anthropic.html" }
+          ]
+        },
+        {
+          "id": "retake",
+          "label": "Retakes",
+          "q": "What is the retake policy for Anthropic exams?",
+          "a": "- Wait **14 days** after a first attempt, **30 days** after a second, and **90 days** after a third.\n- A maximum of **4 attempts** per exam in any rolling 12-month period.",
+          "links": [
+            { "label": "Pearson VUE — Anthropic exams", "url": "https://www.pearsonvue.com/us/en/anthropic.html" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mrcs",
+      "code": "MRCS",
+      "name": "MRCS Part A",
+      "body": "Surgical Royal Colleges · delivered by Pearson VUE",
+      "sites": "CLT + KCH",
+      "aliases": ["mrcs", "mrcs part a", "royal college of surgeons", "icbse"],
+      "topics": [
+        {
+          "id": "booking",
+          "label": "How to apply and book",
+          "q": "How do I apply for MRCS Part A and book a seat?",
+          "a": "MRCS Part A is a two-step process:\n\n- **Apply to a Royal College first.** You must apply through one of the four Surgical Royal Colleges and be accepted for the sitting. The fee is set and paid there.\n- **Then book your seat.** Pearson VUE emails you booking instructions. You choose your test centre — search Kozhikode (Calicut) or Kochi for FETS — during the **booking window** for that sitting.\n\nSeats can only be booked, changed or cancelled inside that booking window. If you cannot find a seat, contact Pearson VUE customer service first, then your College by email before the window closes.",
+          "links": [
+            { "label": "Pearson VUE — MRCS (ICBSE)", "url": "https://www.pearsonvue.com/us/en/icbse.html" },
+            { "label": "Intercollegiate MRCS — Part A guidance", "url": "https://www.intercollegiatemrcsexams.org.uk/mrcs-part-a/mrcs-part-a-pearson-vue-information/" }
+          ]
+        },
+        {
+          "id": "reschedule",
+          "label": "Change or withdraw",
+          "q": "Can I change my MRCS Part A seat or withdraw?",
+          "a": "- You can reschedule or cancel your seat **only during the test-centre booking window**, in your Pearson VUE account.\n- Withdrawing from the exam itself, and any refund, is governed by your Royal College's withdrawal and refund policy — contact the College directly, including for medical or compassionate reasons.\n- Candidates who never log in to the Pearson portal during the window are not eligible for a refund or transfer.",
+          "links": [
+            { "label": "MRCS regulations and withdrawal policy", "url": "https://www.intercollegiatemrcsexams.org.uk/about-the-mrcs/mrcs-regulations-and-formal-documents/" },
+            { "label": "Contact your Royal College", "url": "https://www.intercollegiatemrcsexams.org.uk/the-royal-colleges/" }
+          ]
+        },
+        {
+          "id": "id",
+          "label": "ID and arrival",
+          "q": "What ID do I need for MRCS Part A, and when should I arrive?",
+          "a": "- Bring **one original, valid photo ID showing your name, photograph and signature**. A passport is preferred. Photocopies are not accepted.\n- The first and last name you registered with must match the ID exactly.\n- **Arrive 30 minutes before** your start time. Candidates arriving more than 15 minutes late are refused admission.",
+          "links": [
+            { "label": "Pearson VUE — MRCS (ICBSE)", "url": "https://www.pearsonvue.com/us/en/icbse.html" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "other",
+      "code": "ALL",
+      "name": "Another exam",
+      "body": "Prometric · Pearson VUE · PSI programmes",
+      "sites": "CLT + KCH",
+      "aliases": [],
+      "topics": [
+        {
+          "id": "booking",
+          "label": "How booking works",
+          "q": "How do I book another exam at FETS?",
+          "a": "FETS delivers exams for **Prometric**, **Pearson VUE** and **PSI**. For every programme, the seat is booked with the exam's own organisation or its delivery partner — not with the centre.\n\n- Register with your exam body (for example Cisco, Oracle, PMI, GARP).\n- When you schedule, choose a **test centre** appointment and search Kozhikode (Calicut) or Kochi.\n- Pick FETS and a date.\n\nNot sure whether we deliver your exam? Type its name in the box below and the desk will check the roster.",
+          "links": [
+            { "label": "Pearson VUE — find your programme", "url": "https://www.pearsonvue.com/us/en/test-takers.html" },
+            { "label": "Prometric ProScheduler", "url": "https://proscheduler.prometric.com/" }
+          ]
+        },
+        {
+          "id": "exam-day",
+          "label": "Exam day at FETS",
+          "q": "What should I expect on exam day at FETS?",
+          "a": "- **Report 30 minutes early** for check-in, ID verification and biometric capture.\n- **Bring original ID.** A valid government-issued photo ID plus your confirmation email. Your exam body may ask for more — its rule is the one that counts.\n- **Everything goes in a locker.** Phones, watches, bags, notes and electronics stay in a numbered locker until you finish.\n- **Private station.** One candidate per partitioned bay on an invigilated, recorded floor.",
+          "links": []
+        },
+        {
+          "id": "locations",
+          "label": "Centre locations and hours",
+          "q": "Where are the FETS centres and when are they open?",
+          "a": "Both centres are open **Monday to Sunday, 08:00–18:00**.\n\n- **Calicut:** 4th Floor, Kadooli Tower, West Nadakkavu, Vandipetta Junction, Calicut, Kerala 673011. Phone 0495 491 5936. Calicut Railway Station is 3.0 km away.\n- **Kochi:** 6th Floor, Manjooran Estate, Behind MRA Hotel, Bypass Junction, Edappally, Kochi, Kerala 682024. Phone 0484 454 1957. Edappally Metro Station is 350 m away.",
+          "links": [
+            { "label": "Calicut centre on Google Maps", "url": "https://maps.google.com/?q=Kadooli+Tower+West+Nadakkavu+Calicut" },
+            { "label": "Kochi centre on Google Maps", "url": "https://maps.google.com/?q=Manjooran+Estate+Edappally+Kochi" }
+          ]
+        },
+        {
+          "id": "mock",
+          "label": "Mock exams — Test Drive",
+          "q": "Do you run mock exams?",
+          "a": "Yes. **Exam Test Drive** puts you in a real seat, on the real machines, under real timing before the day it counts — followed by a performance readout and a feedback sitting with our team.\n\nTo request a seat, email edu@fets.in with the exam and your preferred centre.",
+          "links": [
+            { "label": "Email edu@fets.in", "url": "mailto:edu@fets.in?subject=Exam%20Test%20Drive%20%E2%80%94%20seat%20request" }
+          ]
+        }
+      ]
+    }
+  ]
+}
