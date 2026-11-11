@@ -1,7 +1,7 @@
 {
-  "version": "2026-11-11.2",
+  "version": "2026-11-11.3",
   "checked": "11 Nov 2026",
-  "note": "Single source of truth for the FETS candidate support desk. The landing page renders these answers directly; the Ask FETS assistant (fets-agent) loads this same file as verified knowledge. Edit an answer here and both update. Answers use a small markdown subset: blank line = new paragraph, '- ' bullets, **bold**. A topic with \"calendar\": true also shows that exam's upcoming session days from the centre calendar, when connected.",
+  "note": "Single source of truth for the FETS candidate support desk. The landing page renders these answers directly; the Ask FETS assistant (fets-agent) loads this same file as verified knowledge. Edit an answer here and both update. Answers use a small markdown subset: blank line = new paragraph, '- ' bullets, **bold**. A topic with \"calendar\": true also shows the days that already have candidates booked for that exam at FETS (from the centre calendar), when connected.",
   "contact": {
     "email": "edu@fets.in",
     "whatsapp": "+91 96056 86000",
@@ -24,7 +24,7 @@
           "label": "Is the window open? Check dates",
           "calendar": true,
           "q": "Is the CMA US testing window open, and are dates available?",
-          "a": "IMA schedules CMA US in testing windows — normally **January–February**, **May–June** and **September–October** — and exam days can also fall outside those months. The days FETS currently has CMA US sessions are listed from the centre calendar below.\n\nSeats at FETS Calicut and FETS Kochi are published and booked only on **Prometric ProScheduler**. FETS cannot open, hold or reserve a seat — the scheduler is always the live answer for whether a seat is free.\n\n- Open ProScheduler and search for the CMA exam (sponsor: Institute of Certified Management Accountants).\n- Search by city — Kozhikode (Calicut) or Kochi — to see every open date at our centres.\n- To book you need the **authorization number** IMA issues once you have registered and paid for an exam part.\n\nIf no dates show for the window you want, IMA or Prometric has not opened it yet. Check again in a few days.",
+          "a": "IMA schedules CMA US in testing windows — normally **January–February**, **May–June** and **September–October** — and exam days can also fall outside those months. Days that already have CMA US candidates booked at FETS are listed below; more days may be open for booking than appear there.\n\nSeats at FETS Calicut and FETS Kochi are published and booked only on **Prometric ProScheduler**. FETS cannot open, hold or reserve a seat — the scheduler is always the live answer for whether a seat is free.\n\n- Open ProScheduler and search for the CMA exam (sponsor: Institute of Certified Management Accountants).\n- Search by city — Kozhikode (Calicut) or Kochi — to see every open date at our centres.\n- To book you need the **authorization number** IMA issues once you have registered and paid for an exam part.\n\nIf no dates show for the window you want, IMA or Prometric has not opened it yet. Check again in a few days.",
           "links": [
             { "label": "Open Prometric ProScheduler", "url": "https://proscheduler.prometric.com/" },
             { "label": "IMA — CMA certification", "url": "https://www.imaglobal.org/certifications/cma" }

@@ -167,11 +167,12 @@
   }
 
   /* ---------- live centre calendar (guided answers flagged "calendar": true) ---------- */
-  // Shows the days FETS has this exam on its own calendar. Renders nothing unless
-  // the calendar is connected AND has matching days, so it can never mislead.
+  // Shows the days that already have candidates booked for this exam at FETS (staff
+  // enter them from the providers' portals) — not every day open for booking.
+  // Renders nothing unless the calendar is connected AND has matching days.
   function calendarHtml(d, exam) {
     if (!d || d.state !== "ok" || !d.centres || !d.centres.length) return "";
-    var h = '<p class="fd-cal-h"><span class="fd-dot dot-pulse"></span>On the FETS calendar now</p>';
+    var h = '<p class="fd-cal-h"><span class="fd-dot dot-pulse"></span>Exam days already booked at FETS</p>';
     for (var i = 0; i < d.centres.length; i++) {
       var c = d.centres[i];
       h += '<div class="fd-cal-c"><strong>' + esc(c.centre) + "</strong>";
@@ -184,8 +185,8 @@
       }
       h += "</div>";
     }
-    h += '<p class="fd-cal-n">' + esc(exam.name) + " session days on the centre calendar, next " + esc(d.days) +
-      " days (ranges inclusive). Not seat availability — a listed day may be full and other days may still open. Check seats on the official site above.</p>";
+    h += '<p class="fd-cal-n">Days with ' + esc(exam.name) + " candidates already booked at this centre, next " + esc(d.days) +
+      " days (ranges inclusive). More days may be open for booking, and a listed day may be full — the official site above shows every open day and seat.</p>";
     return h;
   }
   var calCache = {};   // one request per exam per visit: the endpoint shares the assistant's rate limit
