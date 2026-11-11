@@ -18,6 +18,9 @@ step, no env vars. Typed questions are answered by the separate `fets-agent` ser
 - `support/kb.json` — **the knowledge base**: every guided answer and official link. The page renders
   it directly and `fets-agent` loads the same file, so one edit updates both. Update `checked` and
   `version` when you re-verify an answer against the exam body's site.
+- `open-days/` — **staff screen** (`/open-days/`): staff sign in with their fets.live login and tick the
+  days each exam is open for booking at each centre. The support desk shows those days to candidates;
+  a list not re-checked for 7 days drops off the site by itself.
 - `assets/`, `images/` — the compiled app and media. There is no source for the compiled bundle;
   `assets/index-*-desk.js` is the original build with one nav entry added for the support desk.
 - `enhancements.css`, `enhancements.js` — mobile polish and embedded maps

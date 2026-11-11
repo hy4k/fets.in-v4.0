@@ -160,49 +160,45 @@
       if (more) html += '<div class="fd-more"><p class="fd-src">More on ' + esc(exam.name) + '</p><div class="fd-topics">' + more + "</div></div>";
       var answer = addMsg("desk", html);
       scrollTo(q);
-      if (topic.calendar) liveCalendar(answer, exam);
+      if (topic.openDays) liveOpenDays(answer, exam);
       history.push({ role: "user", content: topic.q });
       history.push({ role: "assistant", content: topic.a });
     });
   }
 
-  /* ---------- live centre calendar (guided answers flagged "calendar": true) ---------- */
-  // Shows the days that already have candidates booked for this exam at FETS (staff
-  // enter them from the providers' portals) — not every day open for booking.
-  // Renders nothing unless the calendar is connected AND has matching days.
-  function calendarHtml(d, exam) {
+  /* ---------- open days (guided answers flagged "openDays": true) ---------- */
+  // The days this exam is open for booking at each centre, as recorded by FETS
+  // staff from the providers' portals (staff screen: /open-days/). Renders
+  // nothing when no recent list is on file, so candidates never see stale days.
+  function openDaysHtml(d) {
     if (!d || d.state !== "ok" || !d.centres || !d.centres.length) return "";
-    var h = '<p class="fd-cal-h"><span class="fd-dot dot-pulse"></span>Exam days already booked at FETS</p>';
+    var h = '<p class="fd-cal-h"><span class="fd-dot dot-pulse"></span>Open for booking at FETS</p>';
     for (var i = 0; i < d.centres.length; i++) {
       var c = d.centres[i];
       h += '<div class="fd-cal-c"><strong>' + esc(c.centre) + "</strong>";
-      if (c.months && c.months.length) {
-        for (var m = 0; m < c.months.length; m++) {
-          h += '<p class="fd-cal-m"><span>' + esc(c.months[m].label) + "</span>" + esc(c.months[m].days) + "</p>";
-        }
-      } else {
-        h += '<p class="fd-cal-m">' + c.dates.slice(0, 18).map(function (x) { return esc(x.label); }).join(" · ") + "</p>";
+      for (var m = 0; m < c.months.length; m++) {
+        h += '<p class="fd-cal-m"><span>' + esc(c.months[m].label) + "</span>" + esc(c.months[m].days) + "</p>";
       }
+      if (c.checked) h += '<p class="fd-cal-k">Checked by FETS staff on ' + esc(c.checked) + "</p>";
       h += "</div>";
     }
-    h += '<p class="fd-cal-n">Days with ' + esc(exam.name) + " candidates already booked at this centre, next " + esc(d.days) +
-      " days (ranges inclusive). More days may be open for booking, and a listed day may be full — the official site above shows every open day and seat.</p>";
+    h += '<p class="fd-cal-n">Ranges are inclusive. Seats can fill after our last check — choose your day and book on the official site above.</p>';
     return h;
   }
-  var calCache = {};   // one request per exam per visit: the endpoint shares the assistant's rate limit
-  function liveCalendar(el, exam) {
-    var req = calCache[exam.id] || (calCache[exam.id] = fetch(ASK_URL + "/calendar?exam=" + encodeURIComponent(exam.id))
+  var openDaysCache = {};   // one request per exam per visit
+  function liveOpenDays(el, exam) {
+    var req = openDaysCache[exam.id] || (openDaysCache[exam.id] = fetch(ASK_URL + "/open-days?exam=" + encodeURIComponent(exam.id))
       .then(function (r) { return r.ok ? r.json() : null; }));
     req
       .then(function (d) {
-        var h = calendarHtml(d, exam);
+        var h = openDaysHtml(d);
         if (!h) return;
         var box = document.createElement("div");
         box.className = "fd-cal";
         box.innerHTML = h;
         var body = el.querySelector(".fd-body");
-        var src = body.querySelector(".fd-src");
-        body.insertBefore(box, src || null);
+        // Straight after the answer text, ahead of the link buttons: the days are the answer.
+        body.insertBefore(box, body.querySelector(".fd-links") || body.querySelector(".fd-src") || null);
       })
       .catch(function () {});
   }

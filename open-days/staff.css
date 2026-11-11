@@ -1,0 +1,91 @@
+/* FETS staff — open days. Same tokens and typefaces as fets.in. */
+:root {
+  --bg: #0a0b0d; --panel: #121316; --panel-2: #17181c; --line: #262a31; --line-soft: #1b1e24;
+  --signal: #ff9e40; --signal-dim: rgba(255, 158, 64, 0.14); --pass: #5fa8c7;
+  --ink: #fbfbfb; --mute: #b8bcc4; --faint: #69707a;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+  color-scheme: dark;
+}
+*, *::before, *::after { box-sizing: border-box; }
+[hidden] { display: none !important; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Space Grotesk", system-ui, sans-serif; font-size: 16px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
+button, input { font: inherit; color: inherit; }
+::selection { background: var(--signal); color: #0a0b0d; }
+
+.od-micro { margin: 0 0 0.5rem; font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+.od-sig { color: var(--signal); }
+
+.od-bar { position: sticky; top: 0; z-index: 10; height: 52px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0 1.25rem; background: rgba(10, 11, 13, 0.9); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.od-brand { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--ink); min-width: 0; }
+.od-logo { display: flex; width: 46px; padding: 4px 6px; border-radius: 3px; background: #f5f1e4; border: 1px solid var(--line); flex: none; }
+.od-logo img { width: 100%; height: auto; display: block; }
+.od-brand-t { font-family: var(--mono); font-size: 0.6875rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; white-space: nowrap; }
+.od-brand-t i { font-style: normal; font-weight: 400; color: var(--faint); margin-left: 0.75rem; letter-spacing: 0.16em; }
+.od-user { display: flex; align-items: center; gap: 0.75rem; font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.08em; color: var(--mute); min-width: 0; }
+.od-user span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 34vw; }
+
+.od-main { max-width: 68rem; margin: 0 auto; padding: 2rem 1.25rem 7rem; }
+h1 { margin: 0; font-size: clamp(1.9rem, 5.5vw, 3rem); font-weight: 700; letter-spacing: -0.035em; line-height: 1; }
+.od-lead { margin: 0.9rem 0 0; max-width: 40rem; color: var(--mute); }
+
+.od-btn { min-height: 44px; padding: 0 1.2rem; cursor: pointer; border: 1px solid var(--line); background: transparent; font-family: var(--mono); font-size: 0.65rem; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; transition: background 0.25s, color 0.25s, border-color 0.25s, opacity 0.25s; }
+.od-btn-go { border-color: var(--signal); background: var(--signal); color: #0a0b0d; }
+.od-btn-go:disabled { opacity: 0.35; cursor: not-allowed; }
+.od-btn-quiet { min-height: 32px; padding: 0 0.8rem; color: var(--mute); }
+.od-btn-quiet:hover { color: var(--signal); border-color: var(--signal); }
+
+.od-msg { margin: 1rem 0 0; min-height: 1.4em; font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.06em; color: #e9a08f; }
+.od-msg.is-ok { color: var(--pass); }
+#od-boot { color: var(--faint); }
+
+/* sign in */
+.od-card { max-width: 26rem; margin: 6vh auto 0; padding: 1.75rem; background: var(--panel); border: 1px solid var(--line); }
+.od-login form { display: grid; gap: 0.45rem; margin-top: 1.5rem; }
+.od-login label { margin-top: 0.6rem; font-family: var(--mono); font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--faint); }
+.od-login input { min-height: 46px; padding: 0 0.85rem; background: var(--bg); border: 1px solid var(--line); outline: 0; font-size: 1rem; }
+.od-login input:focus { border-color: var(--signal); }
+.od-login .od-btn-go { margin-top: 1.2rem; }
+
+/* pickers */
+.od-pick { display: grid; gap: 1.5rem; margin-top: 2rem; }
+.od-seg { display: inline-flex; flex-wrap: nowrap; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+.od-seg-wrap { display: flex; flex-wrap: wrap; }
+.od-seg button { min-height: 44px; padding: 0 1.1rem; cursor: pointer; border: 0; background: var(--bg); color: var(--mute); font-size: 0.95rem; font-weight: 500; flex: 1 1 auto; transition: background 0.25s, color 0.25s; }
+.od-seg button:hover { background: var(--panel); color: var(--ink); }
+.od-seg button[aria-pressed="true"] { background: var(--signal); color: #0a0b0d; }
+
+.od-status { margin: 1.75rem 0 0; padding: 0.8rem 1rem; border: 1px solid var(--line); border-left: 2px solid var(--pass); background: var(--panel); font-family: var(--mono); font-size: 0.72rem; letter-spacing: 0.04em; line-height: 1.7; color: var(--mute); }
+.od-status.is-warn { border-left-color: var(--signal); }
+.od-status strong { color: var(--ink); font-weight: 500; }
+
+/* months */
+.od-months { display: grid; gap: 1.25rem; margin-top: 1.5rem; }
+.od-month { padding: 1rem; background: var(--panel); border: 1px solid var(--line); }
+.od-month-h { display: flex; align-items: center; justify-content: space-between; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 0.8rem; }
+.od-month-h h2 { margin: 0; font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em; }
+.od-month-h div { display: flex; gap: 0.35rem; }
+.od-month-h button { min-height: 32px; padding: 0 0.65rem; cursor: pointer; border: 1px solid var(--line); background: transparent; color: var(--mute); font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.14em; text-transform: uppercase; }
+.od-month-h button:hover { border-color: var(--signal); color: var(--signal); }
+.od-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
+.od-dow { padding: 0.2rem 0; text-align: center; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.12em; color: var(--faint); }
+.od-day { aspect-ratio: 1 / 1; min-height: 40px; display: grid; place-items: center; cursor: pointer; border: 1px solid var(--line); background: var(--bg); color: var(--mute); font-family: var(--mono); font-size: 0.85rem; font-variant-numeric: tabular-nums; transition: background 0.15s, color 0.15s, border-color 0.15s; }
+.od-day:hover { border-color: var(--signal); color: var(--ink); }
+.od-day[aria-pressed="true"] { background: var(--signal); border-color: var(--signal); color: #0a0b0d; font-weight: 500; }
+.od-day:disabled { cursor: default; border-color: var(--line-soft); color: #3a3f47; background: transparent; }
+.od-day.is-today { box-shadow: inset 0 0 0 1px var(--pass); }
+
+/* save bar */
+.od-save { position: fixed; left: 0; right: 0; bottom: 0; z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.75rem 1.25rem calc(0.75rem + env(safe-area-inset-bottom, 0px)); background: rgba(10, 11, 13, 0.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); border-top: 1px solid var(--line); }
+.od-save p { margin: 0; font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.06em; color: var(--mute); }
+.od-save p b { color: var(--signal); font-weight: 500; }
+
+a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+
+@media (min-width: 720px) {
+  .od-main { padding: 3rem 2.5rem 7rem; }
+  .od-bar, .od-save { padding-left: 2.5rem; padding-right: 2.5rem; }
+  .od-pick { grid-template-columns: auto 1fr; gap: 2.5rem; }
+  .od-months { grid-template-columns: 1fr 1fr; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }

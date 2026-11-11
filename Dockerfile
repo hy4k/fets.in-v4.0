@@ -4,3 +4,4 @@ COPY index.html robots.txt favicon.svg enhancements.css enhancements.js support.
 COPY assets /usr/share/nginx/html/assets
 COPY images /usr/share/nginx/html/images
 COPY support /usr/share/nginx/html/support
+COPY open-days /usr/share/nginx/html/open-days

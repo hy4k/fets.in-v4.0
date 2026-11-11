@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="theme-color" content="#0a0b0d" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Open days — FETS staff</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/open-days/staff.css" />
+  </head>
+  <body>
+    <!-- Staff screen: record which days are OPEN for booking, per centre and exam.
+         Signs in with the fets.live staff login; fets.in shows the saved days to candidates. -->
+    <header class="od-bar">
+      <a class="od-brand" href="/">
+        <span class="od-logo"><img src="/images/brand/forun.png" alt="Forun" /></span>
+        <span class="od-brand-t">FETS<i>Open days · staff</i></span>
+      </a>
+      <div class="od-user" id="od-user" hidden>
+        <span id="od-email"></span>
+        <button type="button" class="od-btn od-btn-quiet" id="od-signout">Sign out</button>
+      </div>
+    </header>
+
+    <main class="od-main">
+      <!-- sign in -->
+      <section class="od-card od-login" id="od-login" hidden>
+        <p class="od-micro od-sig">Staff sign-in</p>
+        <h1>Open days</h1>
+        <p class="od-lead">Sign in with your fets.live login to record which days are open for booking.</p>
+        <form id="od-login-form" autocomplete="on">
+          <label for="od-in-email">Email</label>
+          <input id="od-in-email" type="email" autocomplete="username" required />
+          <label for="od-in-pass">Password</label>
+          <input id="od-in-pass" type="password" autocomplete="current-password" required />
+          <button type="submit" class="od-btn od-btn-go" id="od-in-go">Sign in</button>
+        </form>
+        <p class="od-msg" id="od-login-msg" role="alert"></p>
+      </section>
+
+      <!-- editor -->
+      <section id="od-editor" hidden>
+        <p class="od-micro od-sig">Open days — shown to candidates on fets.in</p>
+        <h1>Which days are open for booking?</h1>
+        <p class="od-lead">Tick every day the provider's portal shows as open at this centre. Untick a day when it fills. Nothing reaches fets.in until you save.</p>
+
+        <div class="od-pick">
+          <div>
+            <p class="od-micro">Centre</p>
+            <div class="od-seg" id="od-centres" role="group" aria-label="Centre">
+              <button type="button" data-centre="calicut">Calicut</button>
+              <button type="button" data-centre="cochin">Kochi</button>
+            </div>
+          </div>
+          <div>
+            <p class="od-micro">Exam</p>
+            <div class="od-seg od-seg-wrap" id="od-exams" role="group" aria-label="Exam"></div>
+          </div>
+        </div>
+
+        <p class="od-status" id="od-status" aria-live="polite"></p>
+
+        <div class="od-months" id="od-months"></div>
+
+        <div class="od-save">
+          <p id="od-count" aria-live="polite"></p>
+          <button type="button" class="od-btn od-btn-go" id="od-save-btn">Save and publish</button>
+        </div>
+        <p class="od-msg" id="od-msg" role="alert"></p>
+      </section>
+
+      <p class="od-msg" id="od-boot" role="status">Loading…</p>
+    </main>
+
+    <script src="/open-days/staff.js" defer></script>
+  </body>
+</html>
