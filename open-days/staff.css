@@ -184,6 +184,9 @@ h1 { margin: 0; font-size: clamp(1.9rem, 5.5vw, 3rem); font-weight: 700; letter-
 .od-h-days { display: grid; gap: 0.3rem; font-family: var(--mono); font-size: 0.72rem; line-height: 1.6; color: var(--mute); }
 .od-h-set { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; }
 .od-h-set b { display: inline-block; min-width: 5.6rem; margin-right: 0.6rem; padding: 0.05rem 0.45rem; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; text-align: center; }
+.od-h-ms { display: grid; gap: 0.15rem; }
+.od-h-m { display: grid; grid-template-columns: 5.2rem minmax(0, 1fr); }
+.od-h-m i { font-style: normal; color: var(--pass); letter-spacing: 0.06em; }
 .od-h-set.is-opened b { background: var(--signal); color: #0a0b0d; }
 .od-h-set.is-opened { color: var(--ink); }
 .od-h-set.is-closed b { border: 1px solid var(--faint); color: var(--mute); }

@@ -152,47 +152,41 @@
 
   /* ---------- history: days opened and closed, one entry per save ---------- */
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return "&#" + c.charCodeAt(0) + ";"; }); }
-  function nextDay(s) { var d = new Date(s + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + 1); return d.toISOString().slice(0, 10); }
-  function span(a, b, baseYear) {            // "18 Nov", "18–20 Nov", "29 Nov – 2 Dec"; the year only when it differs
-    var yr = function (s) { return s.slice(0, 4) === baseYear ? "" : " " + s.slice(0, 4); };
-    var day = function (s) { return +s.slice(8, 10); }, mon = function (s) { return MONTH_NAMES[+s.slice(5, 7) - 1].slice(0, 3); };
-    if (a === b) return day(a) + " " + mon(a) + yr(a);
-    if (a.slice(0, 7) === b.slice(0, 7)) return day(a) + "–" + day(b) + " " + mon(a) + yr(a);
-    return day(a) + " " + mon(a) + (a.slice(0, 4) === b.slice(0, 4) ? "" : yr(a)) + " – " + day(b) + " " + mon(b) + yr(b);
-  }
-  function spans(list, baseYear) {           // runs of consecutive days become one range
-    var out = [], i = 0, j;
-    while (i < list.length) {
-      j = i;
-      while (j + 1 < list.length && nextDay(list[j]) === list[j + 1]) j++;
-      out.push(span(list[i], list[j], baseYear).replace(/ /g, " "));   // a range never breaks across lines
-      i = j + 1;
-    }
-    return out.join(", ");
+  function byMonth(list) {                   // every date written out, one line per month: "Nov 2026  16, 17, 18"
+    var html = "", cur = "", days = [];
+    var flush = function () {
+      if (!cur) return;
+      html += '<span class="od-h-m"><i>' + MONTH_NAMES[+cur.slice(5, 7) - 1].slice(0, 3) + " " + cur.slice(0, 4) + "</i><span>" + days.join(", ") + "</span></span>";
+    };
+    list.forEach(function (d) {
+      d = String(d);
+      if (d.slice(0, 7) !== cur) { flush(); cur = d.slice(0, 7); days = []; }
+      days.push(+d.slice(8, 10));
+    });
+    flush();
+    return html;
   }
   function whenIst(stamp) {
     return new Date(stamp).toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Kolkata" });
   }
-  function yearIst(stamp) {
-    try { return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(new Date(stamp)).slice(0, 4); }
-    catch (e) { return String(stamp).slice(0, 4); }
-  }
   function renderHistory() {
-    var html = "";
+    var html = "", anyClosed = false;
     histRows.forEach(function (r) {
-      var y = yearIst(r.changed_at), o = r.opened || [], c = r.closed || [];
+      var o = r.opened || [], c = r.closed || [];
+      if (c.length) anyClosed = true;
       html += '<li class="od-h"><span class="od-h-when">' + esc(whenIst(r.changed_at)) + "</span>" +
         '<span class="od-h-what"><b>' + esc(CENTRES[r.centre] || r.centre) + "</b>" + esc(cfg.exams[r.exam] || r.exam) + "</span>" +
         '<span class="od-h-days">' +
-          (o.length ? '<span class="od-h-set is-opened"><b>Opened ' + o.length + "</b>" + esc(spans(o, y)) + "</span>" : "") +
-          (c.length ? '<span class="od-h-set is-closed"><b>Closed ' + c.length + "</b>" + esc(spans(c, y)) + "</span>" : "") +
+          (o.length ? '<span class="od-h-set is-opened"><b>Opened ' + o.length + '</b><span class="od-h-ms">' + byMonth(o) + "</span></span>" : "") +
+          (c.length ? '<span class="od-h-set is-closed"><b>Closed ' + c.length + '</b><span class="od-h-ms">' + byMonth(c) + "</span></span>" : "") +
         "</span>" +
         '<span class="od-h-by">' + esc(r.changed_by || "—") + "</span></li>";
     });
     $("od-hist-list").innerHTML = html;
     $("od-hist-csv").disabled = !histRows.length;
     $("od-hist-note").textContent = histRows.length
-      ? "Newest first · times in IST · " + histRows.length + (histRows.length === HIST_MAX ? " most recent saves" : histRows.length === 1 ? " save" : " saves")
+      ? "Newest first · times in IST · " + histRows.length + (histRows.length === HIST_MAX ? " most recent saves" : histRows.length === 1 ? " save" : " saves") +
+        (anyClosed ? "" : " · no day closed yet since the history started — untick a day and save, and it is listed here as Closed")
       : "No days opened or closed here yet.";
   }
   function loadHistory() {
