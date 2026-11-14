@@ -80,6 +80,27 @@
           </div>
         </div>
 
+        <!-- history: every day opened or closed, newest save first -->
+        <div class="od-hist" id="od-hist">
+          <div class="od-hist-h">
+            <p class="od-zone"><b>04</b>History — days opened and closed</p>
+            <button type="button" class="od-btn od-btn-quiet" id="od-hist-csv" disabled>Download CSV</button>
+          </div>
+          <div class="od-hist-f">
+            <div class="od-chips" id="od-hist-centres" role="group" aria-label="History: centre">
+              <button type="button" data-hc="" aria-pressed="true">Both centres</button>
+              <button type="button" data-hc="calicut" aria-pressed="false">Calicut</button>
+              <button type="button" data-hc="cochin" aria-pressed="false">Kochi</button>
+            </div>
+            <div class="od-chips" id="od-hist-exams" role="group" aria-label="History: exam">
+              <button type="button" data-hx="all" aria-pressed="true">All exams</button>
+              <button type="button" data-hx="this" aria-pressed="false" id="od-hist-this">This exam</button>
+            </div>
+          </div>
+          <p class="od-hist-note" id="od-hist-note" aria-live="polite">Loading…</p>
+          <ol class="od-hist-list" id="od-hist-list"></ol>
+        </div>
+
         <div class="od-save" id="od-save">
           <div class="od-save-t">
             <p id="od-count" aria-live="polite"></p>

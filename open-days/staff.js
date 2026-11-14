@@ -22,6 +22,8 @@
   var saved = {};          // iso -> true (what the database has)
   var reviewedAt = null;
   var busy = false;
+  var HIST_MAX = 200;      // saves shown in the history
+  var histCentre = "", histThis = false, histRows = [], histSeq = 0;
 
   /* ---------- dates (the centre works in IST) ---------- */
   function todayIso() {
@@ -143,6 +145,83 @@
   function renderPickers() {
     [].forEach.call(document.querySelectorAll("#od-centres button"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-centre") === centre ? "true" : "false"); });
     [].forEach.call(document.querySelectorAll("#od-exams button"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-exam") === exam ? "true" : "false"); });
+    [].forEach.call(document.querySelectorAll("#od-hist-centres button"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-hc") === histCentre ? "true" : "false"); });
+    [].forEach.call(document.querySelectorAll("#od-hist-exams button"), function (b) { b.setAttribute("aria-pressed", (b.getAttribute("data-hx") === "this") === histThis ? "true" : "false"); });
+    $("od-hist-this").textContent = (cfg.exams[exam] || "This exam") + " only";
+  }
+
+  /* ---------- history: days opened and closed, one entry per save ---------- */
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return "&#" + c.charCodeAt(0) + ";"; }); }
+  function nextDay(s) { var d = new Date(s + "T00:00:00Z"); d.setUTCDate(d.getUTCDate() + 1); return d.toISOString().slice(0, 10); }
+  function span(a, b, baseYear) {            // "18 Nov", "18–20 Nov", "29 Nov – 2 Dec"; the year only when it differs
+    var yr = function (s) { return s.slice(0, 4) === baseYear ? "" : " " + s.slice(0, 4); };
+    var day = function (s) { return +s.slice(8, 10); }, mon = function (s) { return MONTH_NAMES[+s.slice(5, 7) - 1].slice(0, 3); };
+    if (a === b) return day(a) + " " + mon(a) + yr(a);
+    if (a.slice(0, 7) === b.slice(0, 7)) return day(a) + "–" + day(b) + " " + mon(a) + yr(a);
+    return day(a) + " " + mon(a) + (a.slice(0, 4) === b.slice(0, 4) ? "" : yr(a)) + " – " + day(b) + " " + mon(b) + yr(b);
+  }
+  function spans(list, baseYear) {           // runs of consecutive days become one range
+    var out = [], i = 0, j;
+    while (i < list.length) {
+      j = i;
+      while (j + 1 < list.length && nextDay(list[j]) === list[j + 1]) j++;
+      out.push(span(list[i], list[j], baseYear).replace(/ /g, " "));   // a range never breaks across lines
+      i = j + 1;
+    }
+    return out.join(", ");
+  }
+  function whenIst(stamp) {
+    return new Date(stamp).toLocaleString("en-GB", { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Asia/Kolkata" });
+  }
+  function yearIst(stamp) {
+    try { return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Kolkata" }).format(new Date(stamp)).slice(0, 4); }
+    catch (e) { return String(stamp).slice(0, 4); }
+  }
+  function renderHistory() {
+    var html = "";
+    histRows.forEach(function (r) {
+      var y = yearIst(r.changed_at), o = r.opened || [], c = r.closed || [];
+      html += '<li class="od-h"><span class="od-h-when">' + esc(whenIst(r.changed_at)) + "</span>" +
+        '<span class="od-h-what"><b>' + esc(CENTRES[r.centre] || r.centre) + "</b>" + esc(cfg.exams[r.exam] || r.exam) + "</span>" +
+        '<span class="od-h-days">' +
+          (o.length ? '<span class="od-h-set is-opened"><b>Opened ' + o.length + "</b>" + esc(spans(o, y)) + "</span>" : "") +
+          (c.length ? '<span class="od-h-set is-closed"><b>Closed ' + c.length + "</b>" + esc(spans(c, y)) + "</span>" : "") +
+        "</span>" +
+        '<span class="od-h-by">' + esc(r.changed_by || "—") + "</span></li>";
+    });
+    $("od-hist-list").innerHTML = html;
+    $("od-hist-csv").disabled = !histRows.length;
+    $("od-hist-note").textContent = histRows.length
+      ? "Newest first · times in IST · " + histRows.length + (histRows.length === HIST_MAX ? " most recent saves" : histRows.length === 1 ? " save" : " saves")
+      : "No days opened or closed here yet.";
+  }
+  function loadHistory() {
+    var mine = ++histSeq;
+    return rpc("staff_get_open_days_log", { p_centre: histCentre || null, p_exam: histThis ? exam : null, p_limit: HIST_MAX })
+      .then(function (rows) { if (mine !== histSeq) return; histRows = rows || []; renderHistory(); })
+      .catch(function (e) {
+        if (mine !== histSeq) return;
+        histRows = []; $("od-hist-list").innerHTML = ""; $("od-hist-csv").disabled = true;
+        $("od-hist-note").textContent =
+          (e.code === "PGRST202" || /could not find the function/i.test(e.message)) ? "History is not switched on yet. Ask the administrator to run exam_open_days_log.sql."
+          : e.status === 401 ? "" : explain(e);
+      });
+  }
+  function downloadHistory() {
+    var q = function (s) { return '"' + String(s == null ? "" : s).replace(/"/g, '""') + '"'; };
+    var lines = ["Saved at (IST),Centre,Exam,Action,Day,By"];
+    histRows.forEach(function (r) {
+      [["Opened", r.opened || []], ["Closed", r.closed || []]].forEach(function (set) {
+        set[1].forEach(function (d) {
+          lines.push([q(whenIst(r.changed_at)), q(CENTRES[r.centre] || r.centre), q(cfg.exams[r.exam] || r.exam), set[0], d, q(r.changed_by)].join(","));
+        });
+      });
+    });
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8" }));
+    a.download = "fets-open-days-history-" + todayIso() + ".csv";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 2000);
   }
   function load() {
     busy = true; say($("od-msg"), "");
@@ -173,6 +252,7 @@
         saved = {}; dates.forEach(function (d) { saved[d] = true; });
         renderStatus(); renderCount();
         say($("od-msg"), "Saved. fets.in will show these days within a few minutes.", true);
+        loadHistory();
       })
       .catch(function (e) {
         if (e.status === 401) { drop(); show("login"); say($("od-login-msg"), explain(e)); return; }
@@ -183,7 +263,9 @@
   function switchTo(c, x) {
     if (busy || (c === centre && x === exam)) return;
     if (dirty() && !window.confirm("You have unsaved changes for " + cfg.exams[exam] + " — " + CENTRES[centre] + ". Discard them?")) return;
+    var examChanged = x !== exam;
     centre = c; exam = x; load();
+    if (histThis && examChanged) loadHistory();
   }
 
   document.addEventListener("click", function (e) {
@@ -207,8 +289,13 @@
       switchTo(t.getAttribute("data-centre"), exam);
     } else if (t.hasAttribute("data-exam")) {
       switchTo(centre, t.getAttribute("data-exam"));
+    } else if (t.hasAttribute("data-hc")) {
+      histCentre = t.getAttribute("data-hc"); renderPickers(); loadHistory();
+    } else if (t.hasAttribute("data-hx")) {
+      histThis = t.getAttribute("data-hx") === "this"; renderPickers(); loadHistory();
     }
   });
+  $("od-hist-csv").addEventListener("click", downloadHistory);
   $("od-save-btn").addEventListener("click", save);
   $("od-signout").addEventListener("click", function () {
     if (dirty() && !window.confirm("You have unsaved changes. Sign out anyway?")) return;
@@ -233,6 +320,7 @@
     box.innerHTML = html;
     if (!exam) exam = Object.keys(cfg.exams)[0];
     load();
+    loadHistory();
   }
 
   /* ---------- boot ---------- */
