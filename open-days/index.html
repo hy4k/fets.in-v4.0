@@ -29,48 +29,64 @@
     <main class="od-main">
       <!-- sign in -->
       <section class="od-card od-login" id="od-login" hidden>
-        <p class="od-micro od-sig">Staff sign-in</p>
-        <h1>Open days</h1>
-        <p class="od-lead">Sign in with your fets.live login to record which days are open for booking.</p>
-        <form id="od-login-form" autocomplete="on">
-          <label for="od-in-email">Email</label>
-          <input id="od-in-email" type="email" autocomplete="username" required />
-          <label for="od-in-pass">Password</label>
-          <input id="od-in-pass" type="password" autocomplete="current-password" required />
-          <button type="submit" class="od-btn od-btn-go" id="od-in-go">Sign in</button>
-        </form>
-        <p class="od-msg" id="od-login-msg" role="alert"></p>
+        <p class="od-card-h"><span class="od-sig">Staff sign-in</span><span>fets.live login</span></p>
+        <div class="od-card-b">
+          <h1>Open days</h1>
+          <p class="od-lead">Sign in with your fets.live login to record which days are open for booking.</p>
+          <form id="od-login-form" autocomplete="on">
+            <label for="od-in-email">Email</label>
+            <input id="od-in-email" type="email" autocomplete="username" required />
+            <label for="od-in-pass">Password</label>
+            <input id="od-in-pass" type="password" autocomplete="current-password" required />
+            <button type="submit" class="od-btn od-btn-go" id="od-in-go">Sign in</button>
+          </form>
+          <p class="od-msg" id="od-login-msg" role="alert"></p>
+        </div>
       </section>
 
       <!-- editor -->
       <section id="od-editor" hidden>
-        <p class="od-micro od-sig">Open days — shown to candidates on fets.in</p>
+        <p class="od-micro od-sig od-rule">Open days — shown to candidates on fets.in</p>
         <h1>Which days are open for booking?</h1>
         <p class="od-lead">Tick every day the provider's portal shows as open at this centre. Untick a day when it fills. Nothing reaches fets.in until you save.</p>
 
-        <div class="od-pick">
-          <div>
-            <p class="od-micro">Centre</p>
+        <div class="od-console">
+          <div class="od-console-h">
+            <span class="od-sig">Staff desk — Open days</span>
+            <span class="od-console-r"><span class="od-dot"></span>Publishes to fets.in on save</span>
+          </div>
+
+          <div class="od-step od-step-centre">
+            <p class="od-zone"><b>01</b>Centre</p>
             <div class="od-seg" id="od-centres" role="group" aria-label="Centre">
               <button type="button" data-centre="calicut">Calicut</button>
               <button type="button" data-centre="cochin">Kochi</button>
             </div>
           </div>
-          <div>
-            <p class="od-micro">Exam</p>
-            <div class="od-seg od-seg-wrap" id="od-exams" role="group" aria-label="Exam"></div>
+
+          <div class="od-step od-step-exam">
+            <p class="od-zone"><b>02</b>Exam</p>
+            <div class="od-tabs" id="od-exams" role="group" aria-label="Exam"></div>
+          </div>
+
+          <p class="od-status" id="od-status" aria-live="polite"></p>
+
+          <div class="od-step od-step-days">
+            <p class="od-zone">
+              <span><b>03</b>Tick the open days</span>
+              <span class="od-legend" aria-hidden="true"><i class="is-open"></i>Open<i></i>Closed<i class="is-past"></i>Past<i class="is-today"></i>Today</span>
+            </p>
+            <div class="od-months" id="od-months"></div>
           </div>
         </div>
 
-        <p class="od-status" id="od-status" aria-live="polite"></p>
-
-        <div class="od-months" id="od-months"></div>
-
-        <div class="od-save">
-          <p id="od-count" aria-live="polite"></p>
+        <div class="od-save" id="od-save">
+          <div class="od-save-t">
+            <p id="od-count" aria-live="polite"></p>
+            <p class="od-msg" id="od-msg" role="alert"></p>
+          </div>
           <button type="button" class="od-btn od-btn-go" id="od-save-btn">Save and publish</button>
         </div>
-        <p class="od-msg" id="od-msg" role="alert"></p>
       </section>
 
       <p class="od-msg" id="od-boot" role="status">Loading…</p>

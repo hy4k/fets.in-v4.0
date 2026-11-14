@@ -118,7 +118,8 @@
   }
   function renderCount() {
     var n = countOpen();
-    $("od-count").innerHTML = "<b>" + n + "</b> open " + (n === 1 ? "day" : "days") + " ticked" + (dirty() ? " · unsaved changes" : " · saved");
+    $("od-count").innerHTML = "<b>" + n + "</b> open " + (n === 1 ? "day" : "days") + " ticked" + (dirty() ? " · <em>unsaved changes</em>" : " · saved");
+    $("od-save").classList.toggle("is-dirty", dirty());
   }
   function renderMonths() {
     var t = todayIso(), box = $("od-months"), html = "";
