@@ -163,7 +163,7 @@
 /* conversation */
 .fd-log {
   position: relative; flex: 1 1 0; min-height: 0;
-  overflow-y: auto; overscroll-behavior: contain;
+  overflow-y: auto; /* no overscroll-behavior here: the wheel must carry on to the page */
   padding: 0.25rem var(--fd-gut); background: var(--bg);
   scrollbar-width: thin; scrollbar-color: var(--line) transparent;
 }
