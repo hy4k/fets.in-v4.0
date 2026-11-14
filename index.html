@@ -34,15 +34,17 @@
         <span class="fd-brand-t">FETS<i>Candidate support</i></span>
       </a>
       <nav class="fd-nav" aria-label="Site sections">
-        <a href="#registry">Exams</a>
-        <a href="#sites">Centres</a>
-        <a href="#simulation">Test drive</a>
-        <a href="#briefing">FAQ</a>
-        <a href="#contact">Contact</a>
+        <a href="#desk" data-desk-top data-spy="desk" class="is-on">Support desk</a>
+        <a href="#airlock" data-spy="airlock">Facility</a>
+        <a href="#registry" data-spy="registry">Exams</a>
+        <a href="#simulation" data-spy="simulation">Test drive</a>
+        <a href="#sites" data-spy="sites">Centres</a>
+        <a href="#briefing" data-spy="briefing">FAQ</a>
+        <a href="#contact" data-spy="contact">Contact</a>
       </nav>
       <div class="fd-bar-r">
         <button type="button" class="fd-bar-ask" data-desk-focus>Ask the desk</button>
-        <button type="button" class="fd-bar-menu" id="fd-menu-btn" aria-expanded="false" aria-controls="fd-index">Index</button>
+        <button type="button" class="fd-bar-menu" id="fd-menu-btn" aria-expanded="false" aria-controls="fd-index"><span class="fd-burger" aria-hidden="true"><i></i><i></i><i></i></span><span id="fd-menu-t">Menu</span></button>
       </div>
     </header>
 
@@ -77,6 +79,7 @@
             <span class="fd-console-live"><span class="fd-dot dot-pulse"></span>Live<span class="fd-clock fd-wide" id="fd-clock"></span></span>
           </div>
 
+          <p class="fd-zone" aria-hidden="true"><b>01</b>Choose your exam<span class="fd-wide"> — then pick a question or type your own</span></p>
           <div class="fd-exams" id="fd-exams" role="group" aria-label="Select your exam">
             <button type="button" class="fd-exam" data-exam="cma-us"><span class="fd-exam-n">01</span><span class="fd-exam-t">CMA US</span><span class="fd-exam-b">IMA · Prometric</span></button>
             <button type="button" class="fd-exam" data-exam="celpip"><span class="fd-exam-n">02</span><span class="fd-exam-t">CELPIP</span><span class="fd-exam-b">Paragon</span></button>
@@ -106,13 +109,16 @@
           </div>
 
           <form class="fd-form" id="fd-form" autocomplete="off">
-            <span class="fd-prompt" aria-hidden="true">›</span>
-            <textarea id="fd-q" class="fd-q" rows="1" maxlength="600" placeholder="Ask about dates, fees, rescheduling, ID…" aria-label="Your question for the support desk"></textarea>
+            <div class="fd-field">
+              <span class="fd-prompt" aria-hidden="true">›</span>
+              <textarea id="fd-q" class="fd-q" rows="1" maxlength="600" placeholder="Ask about dates, fees, rescheduling, ID…" aria-label="Your question for the support desk"></textarea>
+            </div>
             <button type="submit" class="fd-send" id="fd-send">Send <span aria-hidden="true">→</span></button>
           </form>
           <p class="fd-legal"><span>Automated desk. Your exam body's own rule always decides. Never share passwords or card details here.</span><a href="https://wa.me/919605686000" target="_blank" rel="noopener">Talk to a person on WhatsApp →</a></p>
         </div>
 
+        <p class="fd-lines-h"><b>Prefer a person?</b><span>Direct lines · both centres · 08:00–18:00</span></p>
         <div class="fd-lines" aria-label="Reach a person">
           <a class="fd-line" href="https://wa.me/919605686000" target="_blank" rel="noopener">
             <span class="fd-line-k">WhatsApp</span><span class="fd-line-v">+91 96056 86000</span><span class="fd-line-n">Talk to a person →</span>
@@ -128,11 +134,19 @@
           </a>
         </div>
 
-        <a class="fd-down" href="#airlock">
-          <span>The facility, exam catalogue and both centres</span>
-          <span class="fd-down-l" aria-hidden="true"><i></i></span>
-        </a>
       </div>
+
+      <nav class="fd-next" aria-label="The rest of this site">
+        <p class="fd-next-h"><span aria-hidden="true">↓</span>Below the support desk</p>
+        <div class="fd-next-l">
+          <a href="#airlock"><span>00</span>The facility</a>
+          <a href="#registry"><span>03</span>Exam catalogue</a>
+          <a href="#simulation"><span>04</span>Test drive</a>
+          <a href="#sites"><span>06</span>Two centres</a>
+          <a href="#briefing"><span>07</span>FAQ</a>
+          <a href="#contact"><span>08</span>Contact</a>
+        </div>
+      </nav>
     </section>
 
     <button type="button" class="fd-launch" id="fd-launch" data-desk-focus hidden>Ask the desk <span aria-hidden="true">↑</span></button>

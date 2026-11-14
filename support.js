@@ -173,6 +173,7 @@
   function openDaysHtml(d) {
     if (!d || d.state !== "ok" || !d.centres || !d.centres.length) return "";
     var h = '<p class="fd-cal-h"><span class="fd-dot dot-pulse"></span>Open for booking at FETS</p>';
+    h += '<div class="fd-cal-cs">';
     for (var i = 0; i < d.centres.length; i++) {
       var c = d.centres[i];
       h += '<div class="fd-cal-c"><strong>' + esc(c.centre) + "</strong>";
@@ -182,6 +183,7 @@
       if (c.checked) h += '<p class="fd-cal-k">Checked by FETS staff on ' + esc(c.checked) + "</p>";
       h += "</div>";
     }
+    h += "</div>";
     h += '<p class="fd-cal-n">Ranges are inclusive. Seats can fill after our last check — choose your day and book on the official site above.</p>';
     return h;
   }
@@ -283,10 +285,11 @@
   var bar = document.getElementById("fd-bar");
   var index = document.getElementById("fd-index");
   var menuBtn = document.getElementById("fd-menu-btn");
+  var menuLabel = document.getElementById("fd-menu-t") || menuBtn;
   function openIndex() {
     index.hidden = false;
     menuBtn.setAttribute("aria-expanded", "true");
-    menuBtn.textContent = "Close";
+    menuLabel.textContent = "Close";
     bar.classList.remove("is-away");
     document.documentElement.style.overflow = "hidden";
     var first = index.querySelector("a"); if (first) first.focus();
@@ -295,7 +298,7 @@
     if (index.hidden) return;
     index.hidden = true;
     menuBtn.setAttribute("aria-expanded", "false");
-    menuBtn.textContent = "Index";
+    menuLabel.textContent = "Menu";
     document.documentElement.style.overflow = "";
   }
   menuBtn.addEventListener("click", function () { if (index.hidden) openIndex(); else { closeIndex(); menuBtn.focus(); } });
@@ -303,21 +306,33 @@
     if (e.key === "Escape" && !index.hidden) { closeIndex(); menuBtn.focus(); }
   });
 
-  /* ---------- bar: visible at the desk, steps aside on the way down, returns on the way up ---------- */
-  var lastY = window.scrollY;
+  /* ---------- bar: always on screen; marks the section you are in ---------- */
   var launch = document.getElementById("fd-launch");
+  var spyLinks = bar.querySelectorAll("[data-spy]");
+  // page order; each section lights the nav entry named on the right
+  var SPY = [["desk", "desk"], ["airlock", "airlock"], ["protocol", "airlock"], ["floor", "airlock"], ["registry", "registry"],
+    ["simulation", "simulation"], ["clearance", ""], ["sites", "sites"], ["briefing", "briefing"], ["contact", "contact"]];
+  var ticking = false;
   function onScroll() {
+    ticking = false;
     var y = window.scrollY;
     var offDesk = y > desk.offsetHeight - 120;
-    if (!index.hidden || !offDesk) bar.classList.remove("is-away");
-    else if (y > lastY + 6) bar.classList.add("is-away");
-    else if (y < lastY - 6) bar.classList.remove("is-away");
     bar.classList.toggle("is-off-desk", offDesk);
     if (launch) launch.hidden = !offDesk;
-    lastY = y;
+    var line = window.innerHeight * 0.35, cur = "desk";
+    for (var i = 0; i < SPY.length; i++) {
+      var el = document.getElementById(SPY[i][0]);
+      if (el && el.getBoundingClientRect().top <= line) cur = SPY[i][1];
+    }
+    for (var j = 0; j < spyLinks.length; j++) {
+      var on = spyLinks[j].getAttribute("data-spy") === cur;
+      spyLinks[j].classList.toggle("is-on", on);
+      if (on) spyLinks[j].setAttribute("aria-current", "true"); else spyLinks[j].removeAttribute("aria-current");
+    }
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
+  function queueScroll() { if (!ticking) { ticking = true; window.requestAnimationFrame(onScroll); } }
+  window.addEventListener("scroll", queueScroll, { passive: true });
+  window.addEventListener("resize", queueScroll);
   onScroll();
 
   /* ---------- clock (IST, matching the rest of the site) ---------- */
